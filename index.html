@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pacman-Project-Variation-Jam</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      #gameCanvas {
+        box-shadow: 10px 10px 48px blue;
+        background: #000; /* Black canvas background */
+        display: block;
+        margin: 0 auto;
+      }
+      h1 {
+        text-align: center;
+        font-family: 'Luckiest Guy', sans-serif; /*pop art style title font?*/
+        font-size: 110px;
+        color: #ffd700;
+        -webkit-text-stroke: 1px rgb(0, 0, 0); /*black stroke*/
+
+        /* 3D text effect */
+        text-shadow: 1px 1px 0px #ffffff, /* Black bottom layer */ 2px 2px 0px #ffffff,
+          3px 3px 0px #ffffff, 4px 4px 0px #ffffff, 5px 5px 0px #ffffff; /* Deepest Shadow */
+      }
+
+      #gameModes {
+        text-align: center;
+        font-family: 'Press Start 2P', sans-serif;
+        font-size: 16px;
+        color: white;
+        margin-top: -10px;
+      }
+
+      body {
+        display: flex;
+        justify-content: center;
+        overflow: hidden;
+        height: 100vh;
+
+        background: url('image/pacmanBackground.png') no-repeat center center fixed; /* background image */
+        background-size: cover;
+        position: relative;
+      }
+    </style>
+  </head>
+  <body>
+    <div style="position: relative; display: inline-block">
+      <h1>PACMAN</h1>
+      <canvas id="gameCanvas" width="640" height="544"></canvas>
+      <!-- 32px x 17 = 544px, 32px x 20 = 640px like the tileMap-->
+      <div id="gameModes">
+        <h2>Select Your Game Mode</h2>
+        <p>Press the number key to choose:</p>
+        <ul>
+          <li>1 - Classic Mode (Easy)</li>
+          <li>2 - Classic Mode (Hard)</li>
+          <li>3 - Clone Mode</li>
+          <li>4 - Limited Vision Mode (Easy)</li>
+          <li>5 - Limited Vision Mode (Hard)</li>
+          <li>6 - Maze Deformation Mode</li>
+          <li>7 - Survival Mode</li>
+          <li>8 - Chill Guy Mode</li>
+        </ul>
+      </div>
+    </div>
+
+    <style>
+      h1 {
+        text-align: center;
+        font-family: 'Luckiest Guy', sans-serif;
+        font-size: 110px;
+        color: #ffd700;
+        -webkit-text-stroke: 1px rgb(0, 0, 0); /* Black stroke */
+        text-shadow: 1px 1px 0px #ffffff, 2px 2px 0px #ffffff, 3px 3px 0px #ffffff,
+          4px 4px 0px #ffffff, 5px 5px 0px #ffffff;
+      }
+
+      #gameCanvas {
+        display: block;
+        margin: 0 auto;
+        background: #000; /* Black canvas background */
+        box-shadow: 10px 10px 48px blue;
+        position: relative;
+        z-index: 1;
+      }
+
+      #gameModes {
+        position: absolute;
+        top: 50%; /* Move to 50% of the parent's height */
+        left: 50%; /* Move to 50% of the parent's width */
+        transform: translate(-50%, -50%); /* Center it */
+        text-align: center;
+        font-family: 'Press Start 2P', sans-serif;
+        font-size: 18px;
+        color: #ffffff;
+        z-index: 2; /* Ensure it's above the canvas */
+        pointer-events: none; /* Allow clicks to pass through to the canvas */
+      }
+
+      #gameModes h2 {
+        color: #ffd700;
+        font-size: 24px;
+        margin-bottom: 10px;
+      }
+
+      #gameModes p {
+        font-size: 16px;
+        margin-bottom: 10px;
+      }
+
+      #gameModes ul {
+        list-style-type: none;
+        padding: 0;
+      }
+
+      #gameModes li {
+        margin: 5px 0;
+        font-size: 16px;
+      }
+
+      #gameModes li::before {
+        content: '▶ ';
+        color: #ffd700;
+      }
+    </style>
+
+    <audio src="./sounds/gameWin.wav" autoplay></audio>
+    <script src="./Mainpage.js" type="module"></script>
+    <script>
+      document.addEventListener('keydown', (event) => {
+        switch (event.key) {
+          case '1':
+            window.location.href = './index1.html'; // Classic mode (easy)
+            break;
+          case '2':
+            window.location.href = './index2.html'; // Classic mode (hard)
+            break;
+          case '3':
+            window.location.href = './index3.html'; // Clone mode
+            break;
+          case '4':
+            window.location.href = './index4.html'; // Limited vision mode (easy)
+            break;
+          case '5':
+            window.location.href = './index5.html'; // Limited vision mode (hard)
+            break;
+          case '6':
+            window.location.href = './index6.html'; // Maze Deformation mode
+            break;
+          case '7':
+            window.location.href = './index7.html'; // Suivival mode
+            break;
+          case '8':
+            window.location.href = './index8.html'; // Chill Guy mode
+            break;
+          default:
+            console.log('Invalid key pressed');
+            break;
+        }
+      });
+    </script>
+  </body>
+</html>
