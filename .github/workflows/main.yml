@@ -16,7 +16,8 @@ env:
 # 工作流任务
 jobs:
   build-and-release:
-    runs-on: ubuntu-latest
+    # 使用明确的 Ubuntu 版本替代 latest
+    runs-on: ubuntu-22.04
     
     steps:
       # 检出代码
