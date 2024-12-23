@@ -1,0 +1,62 @@
+# 工作流名称
+name: CI/CD Pipeline
+
+# 触发工作流的事件
+on:
+  push:
+    branches: 
+      - master
+      - release
+      - develop
+
+# 定义环境变量
+env:
+  NODE_VERSION: '16.x'
+
+# 工作流任务
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    
+    steps:
+      # 检出代码
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      
+      # 设置 Node.js 环境
+      - name: Setup Node.js Environment
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      
+      # 安装依赖
+      - name: Install Dependencies
+        run: npm ci
+      
+      # 运行测试
+      - name: Run Tests
+        run: npm test
+      
+      # 执行构建
+      - name: Build Project
+        run: npm run build
+      
+      # 获取最后一次提交信息
+      - name: Get Commit Message
+        id: commit_message
+        run: echo "message=$(git log -1 --pretty=%B)" >> $GITHUB_OUTPUT
+      
+      # 创建 Release (仅在 master 和 release 分支)
+      - name: Create Release
+        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/release '
+        uses: softprops/action-gh-release@v1
+        with:
+          name: Release ${{ github.ref_name }}
+          body: ${{ steps.commit_message.outputs.message }}
+          tag_name: v${{ github.run_number }}
+          draft: false
+          prerelease: ${{ github.ref == 'refs/heads/release' }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
