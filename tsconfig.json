@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "paths": {
+      "@fenxiao/admin-hub": ["./apps/admin/src"],
+      "@fenxiao/merchant-portal": ["./apps/merchant/src"],
+      "@fenxiao/shared": ["./packages/shared/src"],
+
+      "@fenxiao/api": ["./packages/api/src"],
+      "@fenxiao/constants": ["./packages/constants/src"],
+      "@fenxiao/hooks": ["./packages/hooks/src"],
+      "@fenxiao/ui": ["./packages/ui/src"],
+      "@fenxiao/utils": ["./packages/utils/src"],
+    }
+  }
+}

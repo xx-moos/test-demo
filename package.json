@@ -3,21 +3,24 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev-admin-hub": "turbo run dev --filter=admin-hub",
+    "dev-merchant-portal": "turbo run dev --filter=merchant-portal",
+    "dev-all": "turbo run dev --filter=admin-hub --filter=merchant-portal"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
-    "turbo": "^2.4.4"
+    "turbo": "^2.4.4",
+    "typescript": "^5.8.2"
   },
-  "dependencies": {
-    "@ant-design/icons": "^5.6.1",
-    "ahooks": "^3.8.4",
-    "antd": "^5.24.4",
-    "antd-mobile": "^5.39.0",
-    "axios": "^1.8.3",
-    "dayjs": "^1.11.13"
-  }
+  "pnpm": {
+    "overrides": {
+      "react": "^18",
+      "react-dom": "^18",
+      "react-router-dom": "^6"
+    }
+  },
+  "packageManager": "pnpm@9.10.0"
 }
